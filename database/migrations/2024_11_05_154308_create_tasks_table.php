@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('todo_list_id')->index()->constrained('todo_lists');
+            $table->foreignId('todo_list_id')->index()->constrained('todo_lists')->cascadeOnDelete();
             $table->enum('status', ['public', 'private', 'completed', 'cancelled'])->default('private');
             $table->timestamps();
         });

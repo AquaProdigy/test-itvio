@@ -33,7 +33,7 @@
                                     @if($todoList->status === 'public' && $todoList->user_id !== Auth::id())
                                         <span>{{ $task->name }}</span>
                                     @else
-                                        <input type="text" wire:model="taskNames.{{ $task->id }}" value="{{ $task->name }}" class="text-black">
+                                        <input type="text" wire:model.live="taskNames.{{ $task->id }}" value="taskNames.{{ $task->id }}" class="text-black">
                                         <button wire:click.prevent="updateNameTask({{ $task->id }}, '{{ $taskNames[$task->id] }}')">Save</button>
                                     @endif
                                 </div>

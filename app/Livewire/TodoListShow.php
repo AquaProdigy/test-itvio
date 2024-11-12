@@ -67,7 +67,6 @@ class TodoListShow extends Component
 
     public function updateNameTask(int $taskId, string $name)
     {
-
         $task = Task::find($taskId);
         $task->name = $name;
         $task->save();

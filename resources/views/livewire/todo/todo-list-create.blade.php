@@ -13,9 +13,11 @@ new class extends \Livewire\Volt\Component
             'status' => ['required', 'in:public,private']
         ]);
         $validated['user_id'] = Auth::user()->id;
-        \App\Models\TodoList::create($validated);
+        $todo_list = \App\Models\TodoList::create($validated);
 
         $this->name = '';
+
+        $this->dispatch('update-todo-list');
     }
 }
 ?>
@@ -24,7 +26,7 @@ new class extends \Livewire\Volt\Component
 <section>
     <form wire:submit="createTodoList()">
         <input type="text" placeholder="Name todo list" wire:model="name">
-        <x-primary-button>Save</x-primary-button>
+        <x-primary-button>Create</x-primary-button>
     </form>
 
 </section>
