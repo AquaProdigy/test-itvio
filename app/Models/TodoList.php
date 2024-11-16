@@ -19,6 +19,6 @@ class TodoList extends Model
 
     public function canAccess($user)
     {
-        return $this->status === self::PUBLIC || $this->user_id === $user->id;
+        return $this->status !== self::PRIVATE || $this->user_id === $user->id;
     }
 }

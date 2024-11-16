@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Livewire\TodoListShow;
+use App\Livewire\TodoComponent;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
@@ -14,13 +14,12 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::view('todo', 'todo')
+Route::get('todo', TodoComponent::class)
     ->middleware(['auth'])
     ->name('todo');
 
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('todo/{id}', TodoListShow::class)->name('todo.show');
+Route::prefix('todo')->group(function () {
+    Route::get('/{id}', \App\Livewire\TaskComponent::class)->name('todo.show');
 });
 
 
